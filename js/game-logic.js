@@ -3,35 +3,57 @@
 
 
 /*Players move type */
-let playerOneMoveOneType =undefined;
-let playerOneMoveTwoType = undefined;
-let playerOneMoveThreeType = undefined;
-    playerOneMoveOneValue = undefined;
-    playerOneMoveTwoValue = undefined;
-    playerOneMoveThreeValue = undefined;
-
- playerTwoMoveOneType = undefined;
- playerTwoMoveTwoType = undefined;
- playerTwoMoveThreeType = undefined;
- playerTwoMoveOneValue = undefined;
- playerTwoMoveTwoValue = undefined;
- playerTwoMoveThreeValue = undefined;
-
+let playerOneMoveOneType,
+    playerOneMoveTwoType,
+    playerOneMoveThreeType,
+    playerOneMoveOneValue,
+    playerOneMoveTwoValue,
+    playerOneMoveThreeValue,
+    playerTwoMoveOneType,
+    playerTwoMoveTwoType,
+    playerTwoMoveThreeType,
+    playerTwoMoveOneValue,
+    playerTwoMoveTwoValue,
+    playerTwoMoveThreeValue;
 
 /*Functions for PLayer's move */
 
-const setPlayerMoves= (player, moveOneType, moveOneValue, moveTwoType, moveTwoValue, moveThreeType, moveThreeValue) => {
-    
-};
+// const setPlayerMoves= (player, moveOneType, moveOneValue, moveTwoType, moveTwoValue, moveThreeType, moveThreeValue) => {
+//     if (!moveOneType || !moveOneValue || !moveTwoType || !moveTwoValue || !moveThreeType || !moveThreeValue){
+//         return;
+//     }
 
-const getRoundWinner= () => {
+//     if(player === 'Player 1'){
+//         playerOneMoveOneType = moveOneType;
+//         playerOneMoveTwoType = moveTwoType;
+//         playerOneMoveThreeType = moveThreeType;
+//         playerOneMoveOneValue = moveOneValue;
+//         playerOneMoveTwoValue = moveTwoValue;
+//         playerOneMoveThreeValue = moveThreeValue;
+//     }
 
-};
+//     if(player === 'Player 2'){
+//         playerTwoMoveOneType = moveOneType;
+//         playerTwoMoveTwoType = moveTwoType;
+//         playerTwoMoveThreeType = moveThreeType;
+//         playerTwoMoveOneValue = moveOneValue;
+//         playerTwoMoveTwoValue = moveTwoValue;
+//         playerTwoMoveThreeValue = moveThreeValue;
+//     }
 
-const getGameWinner = () =>{
+// };
 
-};
+// const getRoundWinner= () => {
 
-const setComputerMoves = () =>{
+// };
 
-};
+// const getGameWinner = () =>{
+
+// };
+
+// const setComputerMoves = () =>{
+
+// };
+
+// setPlayerMoves('Player 1', 'Rock', 10, 'Scissor', 20, 'Rock', 20);
+// setPlayerMoves('Player 2', 'Rock', 10, 'Scissor', 20, 'Rock', 20);
