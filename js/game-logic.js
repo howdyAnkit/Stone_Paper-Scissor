@@ -1,7 +1,5 @@
 // All code should be written in this file.
 /*jshint esversion:6 */
-
-
 /*Players move type */
 let playerOneMoveOneType,
     playerOneMoveTwoType,
@@ -18,17 +16,17 @@ let playerOneMoveOneType,
 
 /*Functions for PLayer's move */
 
-function setPlayerMoves(player, moveOneType, moveOneValue, moveTwoType,
-                        moveTwoValue, moveThreeType, moveThreeValue) {
+function setPlayerMoves(player, moveOneType, moveOneValue, moveTwoType, moveTwoValue, moveThreeType, moveThreeValue){
 
-        // Writing Fail tests 
-    if (!moveOneType || !moveOneValue || !moveTwoType || !moveTwoValue || !moveThreeType || !moveThreeValue){
+
+    /*Fail-test Starts here */
+    if(!moveOneType || !moveTwoType || !moveThreeType || !moveOneValue || !moveTwoValue || !moveThreeValue){
         return;
     }
 
-    if (!isValidMoveType(moveOneType) || !isValidMoveType(moveTwoType) || !isValidMoveType(moveThreeType)) {
-        return;
-    }   
+    if(!isValidMoveType(moveOneType) || !isValidMoveType(moveTwoType) || !isValidMoveType(moveThreeType)){
+        return; 
+    }
 
     if(!isValidMoveValue(moveOneValue) || !isValidMoveValue(moveTwoValue) || !isValidMoveValue(moveThreeValue)){
         return;
@@ -38,54 +36,52 @@ function setPlayerMoves(player, moveOneType, moveOneValue, moveTwoType,
         return;
     }
 
+    /*Fail-test ends here */
+
+    /*Setting Global Variables Starts here*/
+
     if(player === 'Player One'){
         playerOneMoveOneType = moveOneType;
-        playerOneMoveTwoType = moveTwoType;
-        playerOneMoveThreeType = moveThreeType;
         playerOneMoveOneValue = moveOneValue;
+        playerOneMoveTwoType = moveTwoType;
         playerOneMoveTwoValue = moveTwoValue;
+        playerOneMoveThreeType = moveThreeType;
         playerOneMoveThreeValue = moveThreeValue;
-    }else if(player === 'Player Two'){
+    } else if(player === 'Player Two'){
         playerTwoMoveOneType = moveOneType;
-        playerTwoMoveTwoType = moveTwoType;
-        playerTwoMoveThreeType = moveThreeType;
         playerTwoMoveOneValue = moveOneValue;
+        playerTwoMoveTwoType = moveTwoType;
         playerTwoMoveTwoValue = moveTwoValue;
+        playerTwoMoveThreeType = moveThreeType;
         playerTwoMoveThreeValue = moveThreeValue;
     }
     
-
-};
-
-function isValidMoveType(moveType){
-    return (moveType === 'rock') || (moveType === 'paper') || (moveType === 'scissors');
+    /*Setting Global Variables ends here */
 }
 
-function isValidMoveValue(moveValue) {
-    return (moveValue >= 1) && (moveValue <=99);
-}
 
-function getRoundWinner(roundNumber) {
+function getRoundWinner(roundNumber){ 
     switch(roundNumber){
-        case 1:
-            return getMoveWinner(playerOneMoveOneType,
-                                playerOneMoveOneValue,
-                                playerTwoMoveOneType,
-                                playerTwoMoveOneValue);
-        case 2:
-            return getRoundWinner(playerOneMoveTwoType,
-                                playerOneMoveTwoValue,
-                                playerTwoMoveTwoType,
-                                playerTwoMoveTwoValue);
+        case 1: 
+            return getMoveWinner(playerOneMoveOneType, playerOneMoveOneValue, playerTwoMoveOneType, playerTwoMoveOneValue);
+        
+        case 2: 
+            return getMoveWinner(playerOneMoveTwoType, playerOneMoveTwoValue, playerTwoMoveTwoType, playerTwoMoveTwoValue);
 
         case 3:
-            return getRoundWinner(playerOneMoveThreeType,
-                                playerOneMoveThreeValue,
-                                playerTwoMoveThreeType,
-                                playerTwoMoveThreeValue);
+            return getMoveWinner(playerOneMoveThreeType, playerOneMoveThreeValue, playerTwoMoveThreeType, playerTwoMoveThreeValue);
+
         default:
             return null;
     }
+} 
+
+function isValidMoveType(moveType){ 
+    return (moveType === 'rock' || moveType === 'paper' || moveType === 'scissors');
+}
+
+function isValidMoveValue(moveValue){
+    return (moveValue >= 1) && (moveValue <= 99);
 }
 
 function getMoveWinner(playerOneMoveType, playerOneMoveValue, playerTwoMoveType, playerTwoMoveValue){
@@ -93,6 +89,7 @@ function getMoveWinner(playerOneMoveType, playerOneMoveValue, playerTwoMoveType,
     if(!playerOneMoveType || !playerOneMoveValue || !playerTwoMoveType || !playerTwoMoveValue){
         return null;
     }
+
     if(playerOneMoveType === playerTwoMoveType){
         if(playerOneMoveValue > playerTwoMoveValue){
             return 'Player One';
@@ -102,27 +99,76 @@ function getMoveWinner(playerOneMoveType, playerOneMoveValue, playerTwoMoveType,
             return 'Tie';
         }
     }
+
     if(playerOneMoveType === 'rock'){
-        if(playerTwoMoveType === 'scissors'){
+        if (playerTwoMoveType ==='scissors'){
             return 'Player One';
-        }else{
+        } else{
             return 'Player Two';
         }
-    }else if(playerOneMoveType === 'paper'){
-        if(playerTwoMoveType === 'rock'){
+    } else if(playerOneMoveType === 'paper'){
+        if( playerTwoMoveType === 'rock'){
             return 'Player One';
-        }else{
-            return 'Player Two';
+        }else{ 
+            return'Player Two';
         }
-    }else{
+    } else {
         if(playerTwoMoveType === 'paper'){
             return 'Player One';
         }else{
             return 'Player Two';
         }
     }
+    
 }
 
-const setComputerMoves = () =>{
+function getGameWinner(){
+        if(!playerOneMoveOneType || !playerOneMoveTwoType || !playerOneMoveThreeType || !playerOneMoveOneValue || !playerOneMoveTwoValue || !playerOneMoveThreeValue || 
+            !playerTwoMoveOneType || !playerTwoMoveTwoType || !playerTwoMoveThreeType || !playerTwoMoveOneValue || !playerTwoMoveTwoValue || !playerTwoMoveThreeValue){
+                return null;
 
-};
+            }
+
+        playerOneWins = 0;
+        playerTwoWins = 0;
+
+        const roundOneWinner = getRoundWinner(1);
+        const roundTwoWinner = getRoundWinner(2);
+        const roundThreeWinner = getRoundWinner(3);
+
+        addWin(roundOneWinner);
+        addWin(roundTwoWinner);
+        addWin(roundThreeWinner);
+        
+        if(playerOneWins > playerTwoWins){
+            return 'Player One'
+        }else if(playerOneWins < playerTwoWins){
+            return 'Player Two';
+        }else{
+            return 'Tie';
+        }
+    } 
+
+function addWin(winner){
+     if(winner === 'Player One'){
+         playerOneWins = (playerOneWins + 1) || 1;
+     }else if(winner === 'Player Two'){
+         playerTwoWins = (playerTwoWins + 1) || 1;
+     }
+}
+
+function setComputerMoves(){
+    const moves = ['rock', 'paper', 'scissors'];
+
+    const moveOneType = moves[Math.floor(Math.random() * 3)];
+    const moveTwoType = moves[Math.floor(Math.random() * 3)];
+    const moveThreeType = moves[Math.floor(Math.random() * 3)];
+    
+    const moveOneValue = Math.floor(Math.random() * 96) + 1;
+    const moveTwoValue = Math.floor(Math.random() *(97 - moveOneValue)) + 1;
+    const moveThreeValue = 99 - moveOneValue - moveTwoValue;
+
+    setPlayerMoves('Player Two', moveOneType, moveOneValue, moveTwoType, moveTwoValue, moveThreeType, moveThreeValue);
+
+
+}
